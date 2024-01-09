@@ -918,3 +918,31 @@ const faqData = [
         answer: "Failing to provide adequate referencing in a report can be considered plagiarism, a form of academic misconduct. If you fail to provide adequate referencing in a report, your work may be flagged for plagiarism and may be subject to disciplinary action. Depending on the severity of the plagiarism, it could be reported to the academic integrity officer for further investigation and potential disciplinary action."
     }
 ];
+const options = {
+    includeScore: true,
+    keys: ['question', 'answer']
+  };
+  const fuse = new Fuse(faqData, options);
+  document.getElementById('faqSearch').addEventListener('keyup', (e) => {
+    const searchQuery = e.target.value;
+    const results = fuse.search(searchQuery);
+    // Clear existing FAQs
+    document.getElementById('accordionfaqWorkshop').innerHTML = '';
+    // Add the search results to the FAQ accordion
+    results.forEach(result => {
+      const faq = result.item;
+      const faqElement = `
+      <div class="accordion-item">
+        <h3 class="accordion-header" id="heading${faq.id}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">${faq.question}</button>
+        </h3>
+        <div id="collapse${faq.id}" class="accordion-collapse collapse" aria-labelledby="heading${faq.id}" data-bs-parent="#accordionfaqWorkshop">
+          <div class="accordion-body">
+            <p>${faq.answer}</p>
+          </div>
+        </div>
+      </div>
+      `;
+      document.getElementById('accordionfaqWorkshop').innerHTML += faqElement;
+    });
+  });
