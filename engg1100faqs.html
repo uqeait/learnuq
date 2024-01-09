@@ -27,38 +27,7 @@
         <!-- Fuse Search -->
         <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
         <script src="https://uqeait.github.io/learnuq/fusefaq.js"></script>
-
-        <script type="text/javascript">
-          const options = {
-            includeScore: true,
-            keys: ['question', 'answer']
-          };
-          const fuse = new Fuse(faqData, options);
-          document.getElementById('faqSearch').addEventListener('keyup', (e) => {
-            const searchQuery = e.target.value;
-            const results = fuse.search(searchQuery);
-            // Clear existing FAQs
-            document.getElementById('accordionfaqWorkshop').innerHTML = '';
-            // Add the search results to the FAQ accordion
-            results.forEach(result => {
-              const faq = result.item;
-              const faqElement = `
-              <div class="accordion-item">
-                <h3 class="accordion-header" id="heading${faq.id}">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">${faq.question}</button>
-                </h3>
-                <div id="collapse${faq.id}" class="accordion-collapse collapse" aria-labelledby="heading${faq.id}" data-bs-parent="#accordionfaqWorkshop">
-                  <div class="accordion-body">
-                    <p>${faq.answer}</p>
-                  </div>
-                </div>
-              </div>
-              `;
-              document.getElementById('accordionfaqWorkshop').innerHTML += faqElement;
-            });
-          });
-          </script>
-            
+  
         <!--jQuery version 3.6.0-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             
