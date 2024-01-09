@@ -1,4 +1,5 @@
-const faqData = [
+window.addEventListener('load', function(){
+    const faqData = [
     {
         id: 1,
         question: "What is the main goal of ENGG1100?",
@@ -927,7 +928,7 @@ const options = {
     const searchQuery = e.target.value;
     const results = fuse.search(searchQuery);
     // Clear existing FAQs
-    document.getElementById('accordionfaqWorkshop').innerHTML = '';
+    document.getElementById('resultsAccordion').innerHTML = '';
     // Add the search results to the FAQ accordion
     results.forEach(result => {
       const faq = result.item;
@@ -943,6 +944,7 @@ const options = {
         </div>
       </div>
       `;
-      document.getElementById('accordionfaqWorkshop').innerHTML += faqElement;
+      document.getElementById('resultsAccordion').innerHTML += faqElement;
     });
   });
+})

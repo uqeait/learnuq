@@ -65,8 +65,58 @@
             color: #fff !important;
             background: #999490 !important;
           }
-          
+          #myBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 20px; /* Place the button at the bottom of the page */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #000; /* Dark background */
+            color: white; /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+          }
+          #myBtn:hover {
+            background-color: #555; /* Add a dark-grey background on hover */
+          }
         </style>
+        <!-- Initialise Tooltips -->
+        <script>
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+          })
+        </script>
+        <!-- Back to Top Button -->
+        <script>
+          window.addEventListener('load', bttBtn);
+          function bttBtn(){
+            //Get the button
+            var mybutton = document.getElementById("myBtn");
+  
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+  
+            function scrollFunction() {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+              } else {
+                mybutton.style.display = "none";
+              }
+            }
+  
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+              document.body.scrollTop = 0; // For Safari
+              document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+            // Add event listener to the button
+            mybutton.addEventListener('click', topFunction);
+          }
+      </script>
     </head>
 <body>
 
@@ -74,20 +124,22 @@
         <div class="container">
             <h2 class="text-center mt-2">Frequently Asked Questions</h2>
             <div class="input-group mb-3">
-                <input type="text" id="faqSearch" placeholder="Search FAQs">
+              <input class="form-control mw-75 mx-auto" type="text" id="faqSearch" placeholder="Search FAQs" data-toggle="tooltip" data-placement="top" title="Type your question to search the entire FAQs page" aria-label="Search" aria-describedby="searchButton">
                 <!--<input type="text" id="faqSearch" class="form-control" placeholder="Search FAQs..." aria-label="Search" aria-describedby="searchButton">
                 <button class="btn btn-secondary" type="button" id="searchButton">Search</button>-->
             </div>
+            <div id="resultsAccordion"></div>
         </div>
         <div class="container">
           <h2 class="text-center mt-2">Jump to Menu</h2>
+          <p class="text-center mw-75 mx-auto">Click the links below to jump to that topic.</p>
           <div class="row">
             <div class="col-lg">
               <ol>
                 <li><a href="#introOverview" title="Jump to Introduction/Overview">Introduction/Overview</a></li>
                 <li><a href="#pbl" title="Jump to Problem Based Learning">Problem Based Learning (PBL)</a></li>
                 <li><a href="#workshopHeading" title="Jump to Workshops">Workshops</a></li>
-                <li></li>
+                <li><a href="#seminarsHeading" title="Jump to Seminars">Seminars</a></li>
                 <li></li>
               </ol>
             </div>
@@ -373,6 +425,120 @@
         </div>
     </div>
 </div>
+<hr />
+<h3 class="text-uq p-2 mt-3" id="seminarsHeading">Seminars</h3>
+<div class="accordion" id="accordionfaqSeminars">
+  <!-- Accordion item 1 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading1">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse1" aria-expanded="false" aria-controls="seminarCollapse1">When do students need to attend the seminar session?</button>
+      </h3>
+      <div id="seminarCollapse1" class="accordion-collapse collapse" aria-labelledby="seminarHeading1" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>Students need to attend the seminar session they have registered for in weeks 1-9.</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 2 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse2" aria-expanded="false" aria-controls="seminarCollapse2">How many hours per week are students required to attend a seminar?</button>
+      </h3>
+      <div id="seminarCollapse2" class="accordion-collapse collapse" aria-labelledby="seminarHeading2" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>One (1) hour</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 3 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse3" aria-expanded="false" aria-controls="seminarCollapse3">What type of class is the seminars?</button>
+      </h3>
+      <div id="seminarCollapse3" class="accordion-collapse collapse" aria-labelledby="seminarHeading3" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>In-person for internal-model students. Students are required to attend the seminar session they have registered for.</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 4 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse4" aria-expanded="false" aria-controls="seminarCollapse4">What is the main goal of the seminars?</button>
+      </h3>
+      <div id="seminarCollapse4" class="accordion-collapse collapse" aria-labelledby="seminarHeading4" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>To assist students with the technical challenges of the project and enhance engineering skills</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 5 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading5">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse5" aria-expanded="false" aria-controls="seminarCollapse5">Is it possible to attend the seminars remotely via Zoom?</button>
+      </h3>
+      <div id="seminarCollapse5" class="accordion-collapse collapse" aria-labelledby="seminarHeading5" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>Yes, for those in External mode only.</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 6 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading6">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse6" aria-expanded="false" aria-controls="seminarCollapse6">Are there any assignments related to the seminars?</button>
+      </h3>
+      <div id="seminarCollapse6" class="accordion-collapse collapse" aria-labelledby="seminarHeading6" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>Yes, students are required to complete an Engagement Portfolio for the seminar-related tasks scheduled for Weeks 2-9</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 7 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading7">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse7" aria-expanded="false" aria-controls="seminarCollapse7">Will seminars be recorded?</button>
+      </h3>
+      <div id="seminarCollapse7" class="accordion-collapse collapse" aria-labelledby="seminarHeading7" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>Yes, seminars will be recorded.</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 8 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading8">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse8" aria-expanded="false" aria-controls="seminarCollapse8">Where will the recordings be uploaded?</button>
+      </h3>
+      <div id="seminarCollapse8" class="accordion-collapse collapse" aria-labelledby="seminarHeading8" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>The recordings will be uploaded onto the blackboard site in the Seminars folder.</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 9 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading9">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse9" aria-expanded="false" aria-controls="seminarCollapse9">Can students view the recordings?</button>
+      </h3>
+      <div id="seminarCollapse9" class="accordion-collapse collapse" aria-labelledby="seminarHeading9" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>Yes, the recordings will be available for students to view.</p>
+          </div>
+      </div>
+  </div>
+  <!-- Accordion item 10 -->
+  <div class="accordion-item">
+      <h3 class="accordion-header" id="seminarHeading10">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminarCollapse10" aria-expanded="false" aria-controls="seminarCollapse10">What should I do if I cannot attend a seminar session I've registered for?</button>
+      </h3>
+      <div id="seminarCollapse10" class="accordion-collapse collapse" aria-labelledby="seminarHeading10" data-bs-parent="#accordionfaqSeminars">
+          <div class="accordion-body">
+              <p>Inform your project leader. With permission, watch the seminar recording for completion of your engagement portfolio.</p>
+          </div>
+      </div>
+  </div>
+</div>
 
             </div>
             <div class="col-md-6">
@@ -384,5 +550,7 @@
     </main>
 
     <footer>
+      
     </footer>
+    <button onclick="topFunction()" id="myBtn" data-toggle="tooltip" data-placement="top" title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 </html>
