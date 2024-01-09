@@ -4,7 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>UQ Extend Code Centre</title>
+        <title>ENGG100 FAQs</title>
         <link rel="icon" type="image/x-icon" href="https://uqeait.github.io/img/UQfavicon.png" >
         
         <!-- Google fonts to match UQ Extend look and feel -->
@@ -24,8 +24,40 @@
         <!-- CSS to style Code Centre -->
         <link rel="stylesheet" type="text/css" href="https://uqeait.github.io/uqextend/css/codecentre.css" />
         
-        <!-- TinyMCE WYSIWYG editor -->
-        <script src="https://cdn.tiny.cloud/1/uo446edaov069auf1b4nxjto1611byt76bdeabca3oo866lh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <!-- Fuse Search -->
+        <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+        <script src="https://uqeait.github.io/learnuq/fusefaq.js"></script>
+
+        <script type="text/javascript">
+          const options = {
+            includeScore: true,
+            keys: ['question', 'answer']
+          };
+          const fuse = new Fuse(faqData, options);
+          document.getElementById('faqSearch').addEventListener('keyup', (e) => {
+            const searchQuery = e.target.value;
+            const results = fuse.search(searchQuery);
+            // Clear existing FAQs
+            document.getElementById('accordionfaqWorkshop').innerHTML = '';
+            // Add the search results to the FAQ accordion
+            results.forEach(result => {
+              const faq = result.item;
+              const faqElement = `
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="heading${faq.id}">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">${faq.question}</button>
+                </h3>
+                <div id="collapse${faq.id}" class="accordion-collapse collapse" aria-labelledby="heading${faq.id}" data-bs-parent="#accordionfaqWorkshop">
+                  <div class="accordion-body">
+                    <p>${faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+              `;
+              document.getElementById('accordionfaqWorkshop').innerHTML += faqElement;
+            });
+          });
+          </script>
             
         <!--jQuery version 3.6.0-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -50,16 +82,73 @@
         
         <!--Customise alerts on the site-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.all.min.js"></script>
+        <style>
+          div.accordion h3{
+            margin: 0px !important;
+          }
+          .accordion-button{
+            color: #fff !important;
+            background: #000 !important;
+            font-size: 1.1rem !important;
+            padding: 0.75rem !important;
+          }
+          .accordion-button:not(.collapsed), .accordion-button:focus{
+            color: #fff !important;
+            background: #999490 !important;
+          }
+          
+        </style>
     </head>
 <body>
 
     <header>
         <div class="container">
-            <h1>Frequently Asked Questions</h1>
+            <h2 class="text-center mt-2">Frequently Asked Questions</h2>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search FAQs..." aria-label="Search" aria-describedby="searchButton">
-                <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button>
+                <input type="text" id="faqSearch" class="form-control" placeholder="Search FAQs..." aria-label="Search" aria-describedby="searchButton">
+                <button class="btn btn-secondary" type="button" id="searchButton">Search</button>
             </div>
+        </div>
+        <div class="container">
+          <h2 class="text-center mt-2">Jump to Menu</h2>
+          <div class="row">
+            <div class="col-lg">
+              <ol>
+                <li><a href="#introOverview" title="Jump to Introduction/Overview">Introduction/Overview</a></li>
+                <li><a href="#pbl" title="Jump to Problem Based Learning">Problem Based Learning (PBL)</a></li>
+                <li><a href="#workshopHeading" title="Jump to Workshops">Workshops</a></li>
+                <li></li>
+                <li></li>
+              </ol>
+            </div>
+            <div class="col-lg">
+              <ol start="6">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ol>
+            </div>
+            <div class="col-lg">
+              <ol start="11">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ol>
+            </div>
+            <div class="col-lg">
+              <ol start="16">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ol>
+            </div>
+          </div>
         </div>
     </header>
 
@@ -67,7 +156,7 @@
         <div class="row">
             <div class="col-md-6">
                <!-- Start Code Centre Element-->
-                <h2 class="text-bg-uq p-2">Introduction/Overview</h2>
+                <h3 class="text-uq p-2" id="introOverview">Introduction/Overview</h3>
                 <div class="accordion" id="accordionfaqIntro">
                     <div class="accordion-item">
                         <h3 class="accordion-header" id="heading1">
@@ -131,15 +220,16 @@
                     </div>
                 </div>
 <!-- End Code Centre Element-->
+<hr />
 <!-- Accordion Container -->
-                <h2 class="text-bg-uq p-2">Problem Based Learning (PBL)</h2>
+                <h3 class="text-uq p-2 mt-3" id="pbl">Problem Based Learning (PBL)</h3>
                 <div class="accordion" id="accordionPBL">
                     <!-- Question 1 -->
                     <div class="accordion-item">
                         <h3 class="accordion-header" id="pblHeading1">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pblCollapse1" aria-expanded="false" aria-controls="pblCollapse1">How many hours per week are students required to attend PBL class during weeks 1-9?</button>
                         </h3>
-                        <div id="pblCollapse1" class="accordion-collapse collapse show" aria-labelledby="pblHeading1" data-bs-parent="#accordionPBL">
+                        <div id="pblCollapse1" class="accordion-collapse collapse" aria-labelledby="pblHeading1" data-bs-parent="#accordionPBL">
                             <div class="accordion-body">
                                 <p>Two (2) hours.</p>
                             </div>
@@ -254,6 +344,66 @@
       </div>
     </div>
   </div>
+  <hr />
+  <h3 class="text-uq p-2 mt-3" id="workshopHeading">Workshop</h3>
+<div class="accordion" id="accordionfaqWorkshop">
+    <!-- Accordion item 1 -->
+    <div class="accordion-item">
+        <h3 class="accordion-header" id="workshopHeading1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workshopCollapse1" aria-expanded="false" aria-controls="workshopCollapse1">How many hours per week do students need to attend Workshop class during weeks 1- 12?</button>
+        </h3>
+        <div id="workshopCollapse1" class="accordion-collapse collapse" aria-labelledby="workshopHeading1" data-bs-parent="#accordionfaqWorkshop">
+            <div class="accordion-body">
+                <p>Two (2) hours</p>
+            </div>
+        </div>
+    </div>
+    <!-- Accordion item 2 -->
+    <div class="accordion-item">
+        <h3 class="accordion-header" id="workshopHeading2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workshopCollapse2" aria-expanded="false" aria-controls="workshopCollapse2">How many weeks is Workshop class held?</button>
+        </h3>
+        <div id="workshopCollapse2" class="accordion-collapse collapse" aria-labelledby="workshopHeading2" data-bs-parent="#accordionfaqWorkshop">
+            <div class="accordion-body">
+                <p>Twelve (12) weeks</p>
+            </div>
+        </div>
+    </div>
+    <!-- Accordion item 3 -->
+    <div class="accordion-item">
+        <h3 class="accordion-header" id="workshopHeading3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workshopCollapse3" aria-expanded="false" aria-controls="workshopCollapse3">What type of class is Workshop?</button>
+        </h3>
+        <div id="workshopCollapse3" class="accordion-collapse collapse" aria-labelledby="workshopHeading3" data-bs-parent="#accordionfaqWorkshop">
+            <div class="accordion-body">
+                <p>In-person for internal mode students</p>
+            </div>
+        </div>
+    </div>
+    <!-- Accordion item 4 -->
+    <div class="accordion-item">
+        <h3 class="accordion-header" id="workshopHeading4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workshopCollapse4" aria-expanded="false" aria-controls="workshopCollapse4">What are the activities that take place during Workshop classes?</button>
+        </h3>
+        <div id="workshopCollapse4" class="accordion-collapse collapse" aria-labelledby="workshopHeading4" data-bs-parent="#accordionfaqWorkshop">
+            <div class="accordion-body">
+                <p>Receiving information about the project, and participating in team-based activities to design, build, test, and demonstrate your project.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Accordion item 5 -->
+    <div class="accordion-item">
+        <h3 class="accordion-header" id="workshopHeading5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workshopCollapse5" aria-expanded="false" aria-controls="workshopCollapse5">What should I do if I cannot attend my Workshop session?</button>
+        </h3>
+        <div id="workshopCollapse5" class="accordion-collapse collapse" aria-labelledby="workshopHeading5" data-bs-parent="#accordionfaqWorkshop">
+            <div class="accordion-body">
+                <p>Inform your team, tutor and project leader and discuss catch-up options with them.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
             </div>
             <div class="col-md-6">
                 <h2>Column 2</h2>
