@@ -923,7 +923,7 @@ const options = {
     includeScore: true,
     keys: ['question', 'answer'],
     minMatchCharLength: 3,
-    threshold: 0.01,
+    threshold: 0.4,
     limit: 10
   };
   
