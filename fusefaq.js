@@ -921,18 +921,25 @@ window.addEventListener('load', function(){
 ];
 const options = {
     includeScore: true,
-    keys: ['question', 'answer']
+    keys: ['question', 'answer'],
+    minMatchCharLength: 3,
+    threshold: 0.01,
+    limit: 10
   };
+  
   const fuse = new Fuse(faqData, options);
+  
   document.getElementById('faqSearch').addEventListener('keyup', (e) => {
     const searchQuery = e.target.value;
     const results = fuse.search(searchQuery);
     // Clear existing FAQs
-    document.getElementById('resultsAccordion').innerHTML = '';
+    const resultsAccordion = document.getElementById('resultsAccordion');
+    resultsAccordion.innerHTML = '';
+    const limitedResults = results.slice(0, 10);
     // Add the search results to the FAQ accordion
-    results.forEach(result => {
+    const faqElements = limitedResults.map(result => {
       const faq = result.item;
-      const faqElement = `
+      return `
       <div class="accordion-item">
         <h3 class="accordion-header" id="heading${faq.id}">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">${faq.question}</button>
@@ -944,7 +951,7 @@ const options = {
         </div>
       </div>
       `;
-      document.getElementById('resultsAccordion').innerHTML += faqElement;
     });
+    resultsAccordion.innerHTML = faqElements.join('');
   });
 })
