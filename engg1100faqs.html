@@ -57,7 +57,7 @@
           #myBtn {
             display: none; /* Hidden by default */
             position: fixed; /* Fixed/sticky position */
-            bottom: 20px; /* Place the button at the bottom of the page */
+            bottom: 6rem; /* Place the button at the bottom of the page */
             right: 30px; /* Place the button 30px from the right */
             z-index: 99; /* Make sure it does not overlap */
             border: none; /* Remove borders */
@@ -65,7 +65,7 @@
             background-color: #000; /* Dark background */
             color: white; /* Text color */
             cursor: pointer; /* Add a mouse pointer on hover */
-            padding: 15px; /* Some padding */
+            padding: 15px 20px; /* Some padding */
             border-radius: 10px; /* Rounded corners */
             font-size: 18px; /* Increase font size */
           }
@@ -83,6 +83,12 @@
           }
           ul li a.jumpToLink{
             text-decoration: none;
+          }
+          .fixedGapDivTop{
+            margin-bottom: 5.5rem;
+          }
+           .fixedGapDivBottom{
+            margin-top: 5.5rem;
           }
         </style>
         <!-- Initialise Tooltips -->
@@ -126,7 +132,7 @@
               <h2 class="mt-2">ENGG1100 - Frequently Asked Questions</h2>
               </div>
           </header>
-          <div style="margin-bottom:5.5rem;"></div>
+          <div class="fixedGapDivTop"></div>
             <div class="container">
               <div class="input-group my-3 mw-50 mx-auto">
                 <input class="form-control mx-auto" type="text" id="faqSearch" placeholder="Search FAQs" data-toggle="tooltip" data-placement="top" title="Type your question to search the entire FAQs page. Results will appear after you type 3 characters." aria-label="Search" aria-describedby="searchButton">
@@ -2643,9 +2649,9 @@
                 </div>
             </div>
         </main>
-        <div style="margin-top:5.5rem;"></div>
+        <div class="fixedGapDivBottom"></div>
         <footer class="text-bg-uq p-2 fixed-bottom text-center">
-          <img class="img-fluid p-2" width="170px" src="/uq-logo--reversed.svg"/>
+          <img alt="UQ Logo" class="img-fluid p-2" width="170px" src="/uq-logo--reversed.svg"/>
         </footer>
         <button onclick="topFunction()" id="myBtn" data-toggle="tooltip" data-placement="top" title="Back to top">
             <i class="fa-solid fa-arrow-up"></i>
