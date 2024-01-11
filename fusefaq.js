@@ -1119,24 +1119,30 @@ const options = {
   document.getElementById('faqSearch').addEventListener('keyup', (e) => {
     const searchQuery = e.target.value;
     const results = fuse.search(searchQuery);
+    // Send event to Google Analytics
+    gtag("event", "Search", {
+      event_category: "FAQ Search",
+      event_label: searchQuery,
+    });
     // Clear existing FAQs
-    const resultsAccordion = document.getElementById('resultsAccordion');
-    resultsAccordion.innerHTML = '';
-  
+    const resultsAccordion = document.getElementById("resultsAccordion");
+    resultsAccordion.innerHTML = "";
+
     // Group results by category
     const resultsByCategory = results.reduce((acc, { item }) => {
       (acc[item.category] = acc[item.category] || []).push(item);
       return acc;
     }, {});
-  
+
     // Iterate over each category and append questions
     for (const category in resultsByCategory) {
-    // Limit results to top 5 for each category
+      // Limit results to top 5 for each category
       let topResults = resultsByCategory[category].slice(0, 5);
-      let resultsAccName = category.replace(/\s+/g, '').replace(/\(PBL\)/g, '');
+      let resultsAccName = category.replace(/\s+/g, "").replace(/\(PBL\)/g, "");
 
-      let faqElements = topResults.map(faq => {
-        return `
+      let faqElements = topResults
+        .map((faq) => {
+          return `
           <div class="accordion-item">
             <h3 class="accordion-header" id="heading${faq.id}">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">${faq.question}</button>
@@ -1148,8 +1154,9 @@ const options = {
             </div>
           </div>
         `;
-      }).join('');
-  
+        })
+        .join("");
+
       // Add the category and its questions to the FAQ accordion
       resultsAccordion.innerHTML += `
         <h3 class="text-uq my-2">${category}</h3>
