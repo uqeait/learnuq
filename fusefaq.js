@@ -1133,6 +1133,7 @@ const options = {
     for (const category in resultsByCategory) {
     // Limit results to top 5 for each category
       let topResults = resultsByCategory[category].slice(0, 5);
+      let resultsAccName = category.replace(/\s+/g, '').replace(/\(PBL\)/g, '');
 
       let faqElements = topResults.map(faq => {
         return `
@@ -1140,7 +1141,7 @@ const options = {
             <h3 class="accordion-header" id="heading${faq.id}">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">${faq.question}</button>
             </h3>
-            <div id="collapse${faq.id}" class="accordion-collapse collapse" aria-labelledby="heading${faq.id}" data-bs-parent="#accordionfaqWorkshop">
+            <div id="collapse${faq.id}" class="accordion-collapse collapse" aria-labelledby="heading${faq.id}" data-bs-parent="#accordionfaq${resultsAccName}">
               <div class="accordion-body">
                 <p>${faq.answer}</p>
               </div>
@@ -1152,7 +1153,7 @@ const options = {
       // Add the category and its questions to the FAQ accordion
       resultsAccordion.innerHTML += `
         <h3 class="text-uq my-2">${category}</h3>
-        <div class="accordion">
+        <div class="accordion" id="accordionfaq${resultsAccName}">
           ${faqElements}
         </div>
       `;
