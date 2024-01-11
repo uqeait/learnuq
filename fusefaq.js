@@ -1131,7 +1131,10 @@ const options = {
   
     // Iterate over each category and append questions
     for (const category in resultsByCategory) {
-      let faqElements = resultsByCategory[category].map(faq => {
+    // Limit results to top 5 for each category
+      let topResults = resultsByCategory[category].slice(0, 5);
+
+      let faqElements = topResults.map(faq => {
         return `
           <div class="accordion-item">
             <h3 class="accordion-header" id="heading${faq.id}">
