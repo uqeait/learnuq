@@ -13,22 +13,23 @@
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3Y1GMDPZ1"></script>
         <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-H3Y1GMDPZ1');
-            document.querySelectorAll('.accordion-button').forEach(button => {
-                button.addEventListener('click', () => {
-                    console.log('accordion clicked')
-                    // Check if the accordion is being opened or closed
-                    let action = button.classList.contains('collapsed') ? 'Accordion Opened' : 'Accordion Closed';
-                    gtag('event', action, {
-                        'event_category': 'Accordion',
-                        'event_label': button.innerText
+            document.addEventListener('DOMContentLoaded', (event) => {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-H3Y1GMDPZ1');
+                    document.querySelectorAll('.accordion-button').forEach(button => {
+                        button.addEventListener('click', () => {
+                            console.log('accordion clicked')
+                            // Check if the accordion is being opened or closed
+                            let action = button.classList.contains('collapsed') ? 'Accordion Opened' : 'Accordion Closed';
+                            gtag('event', action, {
+                                'event_category': 'Accordion',
+                                'event_label': button.innerText
+                            });
+                        });
                     });
-                });
-            });
-            
+                })
         </script>
         <!-- CSS to style Code Centre -->
         <link rel="stylesheet" type="text/css" href="https://uqeait.github.io/uqextend/css/codecentre.css">
