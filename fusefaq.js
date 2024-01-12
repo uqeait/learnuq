@@ -1115,15 +1115,19 @@ const options = {
   };
   
   const fuse = new Fuse(faqData, options);
+  let timeout = null;
   
   document.getElementById('faqSearch').addEventListener('keyup', (e) => {
     const searchQuery = e.target.value;
     const results = fuse.search(searchQuery);
     // Send event to Google Analytics
-    gtag("event", "Search", {
-      event_category: "FAQ Search",
-      event_label: searchQuery,
-    });
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      gtag("event", "Search", {
+        event_category: "FAQ Search",
+        event_label: searchQuery.toLowerCase(),
+      });
+    }, 500); 
     // Clear existing FAQs
     const resultsAccordion = document.getElementById("resultsAccordion");
     resultsAccordion.innerHTML = "";

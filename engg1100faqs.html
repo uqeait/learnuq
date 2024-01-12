@@ -19,6 +19,7 @@
             gtag('config', 'G-H3Y1GMDPZ1');
             document.querySelectorAll('.accordion-button').forEach(button => {
                 button.addEventListener('click', () => {
+                    console.log('accordion clicked')
                     // Check if the accordion is being opened or closed
                     let action = button.classList.contains('collapsed') ? 'Accordion Opened' : 'Accordion Closed';
                     gtag('event', action, {
