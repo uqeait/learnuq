@@ -137,7 +137,6 @@
             // Add event listener to the button
             mybutton.addEventListener('click', topFunction);
           }
-          
         </script>
     </head>
     <body>
@@ -2516,5 +2515,25 @@
         <button onclick="topFunction()" id="myBtn" data-toggle="tooltip" data-placement="top" title="Back to top">
             <i class="fa-solid fa-arrow-up"></i>
         </button>
+        <script type="text/javascript">
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault(); // Prevent default jump
+
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+
+                        if (targetElement) {
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                            const offset = 6.5 * parseFloat(getComputedStyle(document.documentElement).fontSize); // Calculate 6.5rem offset
+
+                            window.scrollTo({
+                                top: targetPosition - offset,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+        </script>
         </body>
     </html>
