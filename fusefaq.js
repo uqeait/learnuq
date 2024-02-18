@@ -1353,19 +1353,19 @@ const options = {
         </div>
       `;
     }
-  });
-  var $temp = $("<input>");
-  $(".copyBadge").on("click", function () {
-    var $url = $(this).prev().attr("href");
-    $("body").append($temp);
-    $temp.val($url).select();
-    document.execCommand("copy");
-    $temp.remove();
-    $(this).html(
-      '<span style="color: var(--bs-bg-color) !important" class="fa fa-check"></span> Email copied'
-    );
-    window.setTimeout(function () {
-      $(".copyBadge").text("Click to copy email address");
-    }, 2000);
+    var $temp = $("<input>");
+    $(".copyBadge").on("click", function () {
+      var $url = $(this).prev().text();
+      $("body").append($temp);
+      $temp.val($url).select();
+      document.execCommand("copy");
+      $temp.remove();
+      $(this).html(
+        '<span style="color: var(--bs-bg-color) !important" class="fa fa-check"></span> Email copied'
+      );
+      window.setTimeout(function () {
+        $(".copyBadge").text("Click to copy email address");
+      }, 2000);
+    });
   });
 })
