@@ -1191,7 +1191,7 @@ window.addEventListener('load', function(){
         id: 161,
         question: "To whom should our transmittal letter be addressed?",
         answer:
-          "The School of Civil Engineering @ enquiries@civil.uq.edu.au <span class=\"badge bg-primary copyBadge\">Copy email address</span> & the course coordinator @ engg1100@uq.edu.au <span class=\"badge bg-primary copyBadge\">Copy email address</span>",
+          "The School of Civil Engineering @ <span><strong>enquiries@civil.uq.edu.au</strong></span> <span class=\"badge bg-primary copyBadge\">Click to copy email address</span><br /><br /> And the course coordinator @ <strong>engg1100@uq.edu.au</strong> <span class=\"badge bg-primary copyBadge\">Click to copy email address</span>",
         category: "Assessments",
       },
       {
