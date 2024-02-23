@@ -29,7 +29,20 @@
                             });
                         });
                     });
+                    document.getElementById('faqSearch').addEventListener('keyup', (e) => {
+                    const searchQuery = e.target.value;
+                    const results = fuse.search(searchQuery);
+                    // Send event to Google Analytics
+                    clearTimeout(timeout);
+                    timeout = setTimeout(function () {
+                        console.log("Sending event to Google Analytics");
+                        gtag("event", "Search", {
+                            event_category: "FAQ Search",
+                            event_label: searchQuery.toLowerCase(),
+                        });
+                    }, 500); 
                 })
+            });
         </script>
         <!-- CSS to style Code Centre -->
         <link rel="stylesheet" type="text/css" href="https://uqeait.github.io/uqextend/css/codecentre.css">
