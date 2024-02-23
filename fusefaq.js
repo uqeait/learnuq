@@ -1306,13 +1306,13 @@ const options = {
     const results = fuse.search(searchQuery);
     // Send event to Google Analytics
     clearTimeout(timeout);
-    timeout = setTimeout(function () {
+    /*timeout = setTimeout(function () {
       console.log("Sending event to Google Analytics");
       gtag("event", "Search", {
         event_category: "FAQ Search",
         event_label: searchQuery.toLowerCase(),
       });
-    }, 500); 
+    }, 500); */
     // Clear existing FAQs
     const resultsAccordion = document.getElementById("resultsAccordion");
     resultsAccordion.innerHTML = "";
