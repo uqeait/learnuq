@@ -29,12 +29,13 @@
                             });
                         });
                     });
+                    var analyticsTimeout;
                     document.getElementById('faqSearch').addEventListener('keyup', (e) => {
                     const searchQuery = e.target.value;
                     //const results = fuse.search(searchQuery);
                     // Send event to Google Analytics
-                    clearTimeout(timeout);
-                    timeout = setTimeout(function () {
+                    clearTimeout(analyticsTimeout);
+                    analyticsTimeout = setTimeout(function () {
                         console.log("Sending event to Google Analytics");
                         gtag("event", "Search", {
                             event_category: "FAQ Search",
