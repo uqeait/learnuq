@@ -1307,6 +1307,7 @@ const options = {
     // Send event to Google Analytics
     clearTimeout(timeout);
     timeout = setTimeout(function () {
+      console.log("Sending event to Google Analytics");
       gtag("event", "Search", {
         event_category: "FAQ Search",
         event_label: searchQuery.toLowerCase(),
