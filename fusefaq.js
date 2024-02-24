@@ -1304,15 +1304,6 @@ const options = {
   document.getElementById('faqSearch').addEventListener('keyup', (e) => {
     const searchQuery = e.target.value;
     const results = fuse.search(searchQuery);
-    // Send event to Google Analytics
-    clearTimeout(timeout);
-    /*timeout = setTimeout(function () {
-      console.log("Sending event to Google Analytics");
-      gtag("event", "Search", {
-        event_category: "FAQ Search",
-        event_label: searchQuery.toLowerCase(),
-      });
-    }, 500); */
     // Clear existing FAQs
     const resultsAccordion = document.getElementById("resultsAccordion");
     resultsAccordion.innerHTML = "";
